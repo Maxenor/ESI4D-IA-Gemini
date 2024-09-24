@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const messagesContainer = document.getElementById('chat-messages');
     const messageInput = document.getElementById('message-input');
     const sendButton = document.getElementById('send-button');
+    const settingsButton = document.getElementById('chat-settings');
+    const settingsModal = document.getElementById('chat-settings-modal');
+    const saveDefaultPromptButton = document.getElementById('chat-settings-modal-save');
 
     // Display the initial messages
     displayMessage('Hello ! What would you like to know?', 'bot');
@@ -13,6 +16,27 @@ document.addEventListener('DOMContentLoaded', () => {
             sendMessage();
         }
     });
+    settingsButton.addEventListener('click', () => {
+        settingsModal.classList.toggle('show');
+    });
+    saveDefaultPromptButton.addEventListener('click', () => {
+        const default_user = document.getElementById('chat-settings-modal-prompt').value;
+        fetch('/settings_chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ default_user })
+        })
+        .then(response => response.json())
+        .then(data => {
+            settingsModal.classList.toggle('show');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            displayMessage('Sorry, there was an error processing your request.', 'bot');
+        });
+    })
 
     function displayMessage(message, sender) {
         const messageElement = document.createElement('div');

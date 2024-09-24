@@ -7,19 +7,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Gemini Chat</h2>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <!-- Chat messages will appear here -->
-        </div>
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="Type your message here..." autocomplete="off">
-            <button id="send-button">Send</button>
+<div class="chat-container">
+    <div class="chat-header">
+        <h2>Gemini Chat</h2>
+        <div>
+            <button id="chat-settings" class="chat-settings">
+                Prompt Settings
+            </button>
         </div>
     </div>
+    <div class="chat-messages" id="chat-messages">
+        <!-- Chat messages will appear here -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="message-input" placeholder="Type your message here..." autocomplete="off">
+        <button id="send-button">Send</button>
+    </div>
+</div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<div class="chat-settings-modal" id="chat-settings-modal">
+    <div class="chat-settings-modal-content">
+        <div>
+            <textarea id="chat-settings-modal-prompt" placeholder="Describe how your AI should help you...">You are a professional historian with years of experience. You will respond to the user's prompt in a concise way and if it is not about history remind the user to ask only about history and not answer his original prompt</textarea>
+        </div>
+        <div>
+            <button class="chat-settings" id="chat-settings-modal-save">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

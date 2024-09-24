@@ -33,13 +33,25 @@ def send_message():
     
     if user_message:
         # Check if the message is history-related
-        if is_history_related(user_message):
-            response = chat.send_message(user_message)
-            return jsonify({'reply': response.text})
-        else:
-            return jsonify({'reply': 'Please ask questions related to history.'})
+#         if is_history_related(user_message):
+        response = chat.send_message(user_message)
+        return jsonify({'reply': response.text})
+#         else:
+#             return jsonify({'reply': 'Please ask questions related to history.'})
     
     return jsonify({'reply': 'Sorry, I did not understand that.'}), 400
+
+@app.route('/settings_chat', methods=['POST'])
+def settings_chat():
+    global chat
+    default_user = request.json.get('default_user')
+    chat = model.start_chat(
+        history=[
+            {"role": "user", "parts": default_user},
+            {"role": "model", "parts": "Hey ! What would you like to know?"},
+        ]
+    )
+    return jsonify({'success': 'Chat settings updated successfully.'})
 
 if __name__ == '__main__':
     app.run(debug=True)
