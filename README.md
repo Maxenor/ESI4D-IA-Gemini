@@ -23,12 +23,16 @@ A streamlined and elegant web application that enables users to interact with th
 
 ![The chatbot web page](image.png)
 
+## **Prompt settings**
+
+![The chatbot web page](settings.png)
+
 ---
 
 ## **Features**
 
 - **Interactive Chat Interface**: Users can converse with the Gemini model in real-time.
-- **Historical Focus**: The chatbot is designed to respond only to history-related questions.
+- **Prompt settings**: The chatbot is designed by default to respond only to history-related questions but you can manage by using "prompt settings" menu.
 - **Responsive Design**: Works on a wide range of devices, providing a seamless user experience.
 - **Real-time Interaction**: The app sends and receives messages without page reloads.
 - **Easy Setup**: Simple to deploy, with minimal configuration requirements.
